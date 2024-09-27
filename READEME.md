@@ -34,9 +34,9 @@ softmax归一化后的分数,就是注意力机制求解出的权重
 
 V表示原始特征矩阵的语义解读
 
-$QK=\begin{pmatrix} a_{11}&a_{12} \\ a_{21}&a_{22} \end{pmatrix}$
+$QK=\begin{pmatrix} a_{11}&a_{12} \\\\ a_{21}&a_{22} \end{pmatrix}$
 
-$V=\begin{pmatrix} v_{11}&v_{12}&v_{13} \\ v_{21}&v_{22}&v_{23} \end{pmatrix}$
+$V=\begin{pmatrix} v_{11}&v_{12}&v_{13} \\\\ v_{21}&v_{22}&v_{23} \end{pmatrix}$
 
 从导出的公式可以看出,,得到的Attention是类似于"全连接"
 的,每个样本都询问了其他各个样本,这样的性质就决定了Transformer的性能要强于RNN和LSTM,但是代价也很明显,Transformer的复杂度是指数级的
