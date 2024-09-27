@@ -18,7 +18,7 @@ ex:求解一个词在句子当中重要程度
 
 Transformer中的相关性被称为注意力分数,公式如下
 
-$Attention(Q, K, V)=softmax(\frac{Q K^{T}}{\sqrt{d_{k}}}) V$
+$ Attention(Q, K, V)=softmax(\frac{Q K^{T}}{\sqrt{d_{k}}}) V$ 
 
 ![image-20240922233238507](./assets/image-20240922233238507-1727244833630-3.png)
 
@@ -683,7 +683,7 @@ $$
 简化为,,,可以看出,,,这里每一行携带的信息都是所有的token
 
 这里每个$C_{1\rightarrow4}$是不同的,,对于每一行,,,他们在Encoder中发问不同,,第一行表示第一个token向其他发问,,第二行表示第二个token向其他发问,,,,,,对于每一列,,表示不同的维度
-$$
+<font>$$
 C_{Encoder}\\=
 \begin{pmatrix}
 c_{1\rightarrow4}&c_{1\rightarrow4}&...&c_{1\rightarrow4}\\
@@ -692,7 +692,7 @@ c_{1\rightarrow4}&c_{1\rightarrow4}&...&c_{1\rightarrow4}\\
 c_{1\rightarrow4}&c_{1\rightarrow4}&...&c_{1\rightarrow4}
 
 \end{pmatrix}
-$$
+$$</font>
 此时,,,$C_{Encoder}$携带的是特征矩阵X的信息,$C_{Encoder}$的每个元素都携带了全部token的信息,,,$C_
 {Decoder}$携带的是真实标签的信息,$C_{Encoder}$中的元素中,每一行代表前i个token的信息,,,**接下来将$C_{Encoder}$作为K,V,,将$C
 _{Decoder}$​作为Q,用每行的Q与全部的KV相乘,,,执行一种较为特殊的注意力机制**
