@@ -34,7 +34,7 @@ softmax归一化后的分数,就是注意力机制求解出的权重
 
 V表示原始特征矩阵的语义解读
 
-$QK=\\begin{array}{cc} a_{11}&a_{12} \\\\ a_{21}&a_{22} \\end{array}$
+QK=\\begin{array}{cc} a_{11}&a_{12} \\\\ a_{21}&a_{22} \\end{array}
 
 $V=\begin{array} v_{11}&v_{12}&v_{13} \\\\ v_{21}&v_{22}&v_{23} \end{array}$
 
