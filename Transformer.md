@@ -44,7 +44,7 @@ v_{21}&v_{22}&v_{23}
 从导出的公式可以看出,,得到的Attention是类似于"全连接"
 的,每个样本都询问了其他各个样本,这样的性质就决定了Transformer的性能要强于RNN和LSTM,但是代价也很明显,Transformer的复杂度是指数级的
 
-$attention=QKV$  (2,2) × (2,3) -->(2,3)
+$ attention=QKV $  (2,2) × (2,3) -->(2,3)
 
 ## 1.3 multi-head Attention
 
