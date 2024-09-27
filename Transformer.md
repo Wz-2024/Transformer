@@ -33,14 +33,8 @@ softmax归一化后的分数,就是注意力机制求解出的权重
 
 V表示原始特征矩阵的语义解读
 
-$QK=\begin{pmatrix}
-a_{11}&a_{12} \\
-a_{21}&a_{22}
-\end{pmatrix}$
-$V=\begin{pmatrix}
-v_{11}&v_{12}&v_{13} \\
-v_{21}&v_{22}&v_{23}
-\end{pmatrix}$
+$QK=\begin{pmatrix} a_{11}&a_{12} \\ a_{21}&a_{22} \end{pmatrix}$
+$V=\begin{pmatrix} v_{11}&v_{12}&v_{13} \\ v_{21}&v_{22}&v_{23} \end{pmatrix}$
 
 从导出的公式可以看出,,得到的Attention是类似于"全连接"
 的,每个样本都询问了其他各个样本,这样的性质就决定了Transformer的性能要强于RNN和LSTM,但是代价也很明显,Transformer的复杂度是指数级的
@@ -49,7 +43,7 @@ $attention=QKV$  (2,2) × (2,3) -->(2,3)
 
 ## 1.3 multi-head Attention
 
-对于每一个样本,$ W^Q, W^K,W^V$分别于Text_embedding相乘,得到KQV
+对于每一个样本,$W^Q, W^K,W^V$分别于Text_embedding相乘,得到KQV
 
 ![image-20240923001404541](./assets/image-20240923001404541-1727244836343-5.png)
 
@@ -57,11 +51,10 @@ $attention=QKV$  (2,2) × (2,3) -->(2,3)
 
 这里的拼接其实非常简单粗暴
 
-$Z_{1}=\begin{pmatrix}z_{11}&z_{12}&z_{13}\\z_{14}&z_{15} &z_{16}\end{pmatrix}$$Z_{2}=\begin{pmatrix}z_{21}&z_{22}&z_
-{23}\\z_{24}&z_{25} &z_{26}\end{pmatrix}$
+$Z_{1}=\begin{pmatrix}z_{11}&z_{12}&z_{13}\\z_{14}&z_{15} &z_{16}\end{pmatrix}$
+$Z_{2}=\begin{pmatrix}z_{21}&z_{22}&z_{23}\\z_{24}&z_{25} &z_{26}\end{pmatrix}$
 
-$Z_{cat}=\begin{pmatrix}z_{11}&z_{12}&z_{13}&z_{11}&z_{12}&z_{13}\\z_{14}&z_{15}&z_{16}&z_{24}&z_{25}&z_{26}
-\end{pmatrix}$
+$Z_{cat}=\begin{pmatrix}z_{11}&z_{12}&z_{13}&z_{11}&z_{12}&z_{13}\\z_{14}&z_{15}&z_{16}&z_{24}&z_{25}&z_{26} \end{pmatrix}$
 
 架构
 
@@ -175,8 +168,7 @@ $X_{I}=X_{i}+\sum_{n=i}^{I-1}F(X_{n},W_{n})$
 
 此时对神经网络的结构求梯度,发现可以避免梯度消失的问题
 
-导出的结果为<font size=5>$\frac{\part Loss}{\part X_{i}}=\frac{\part Loss}{\part X_{i}}*(1+\frac{\part \sum_
-{n=i}^{I-1}F(X_{n},W_{n})}{\part X_{i}})$​</font>
+导出的结果为<font size=5>$\frac{\part Loss}{\part X_{i}}=\frac{\part Loss}{\part X_{i}}*(1+\frac{\part \sum_{n=i}^{I-1}F(X_{n},W_{n})}{\part X_{i}})$​</font>
 
 这里注意下,,Transformer在执行多头注意力机制的时候,以(100,60,512),4头注意力为例
 
@@ -386,14 +378,7 @@ $M=\left[\begin{array}{ccccc}{0}&{-\infty}&{-\infty}&{\cdots}&{-\infty}\\{0}&{0}
 **这里的 k 是标签不是特征**
 
 设得到的$QK^T$的结果为,,,,注意这里的角标是Seq_len这个维度,,表示第几个词向其他词提问,如第一行表示第一个词向第一个词提问,,第二行表示第二个词向第12个词提问,,第三个词表示它向第123个词提问
-$$
-Decoder-Masked-Attention=\begin{pmatrix}
-a_{11}&0&0&0\\
-a_{21}&a_{22}&0&0\\
-a_{31}&a_{32}&a_{33}&0\\
-a_{41}&a_{42}&a_{43}&a_{44}
-\end{pmatrix}
-$$
+$$ Decoder-Masked-Attention=\begin{pmatrix} a_{11}&0&0&0\\ a_{21}&a_{22}&0&0\\ a_{31}&a_{32}&a_{33}&0\\ a_{41}&a_{42}&a_{43}&a_{44} \end{pmatrix} $$
 
 再经过Softmax层,就会得到注意力的分数
 
