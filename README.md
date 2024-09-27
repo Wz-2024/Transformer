@@ -54,7 +54,8 @@ $attention=QKV$  (2,2) × (2,3) -->(2,3)
 
 这里的拼接其实非常简单粗暴
 
-$Z_{1}=\begin{pmatrix}z_{11}&z_{12}&z_{13}\\z_{14}&z_{15}	&z_{16}\end{pmatrix}$$Z_{2}=\begin{pmatrix}z_{21}&z_{22}&z_{23}\\z_{24}&z_{25}	&z_{26}\end{pmatrix}$
+$Z_{1}=\begin{pmatrix}z_{11}&z_{12}&z_{13}\\z_{14}&z_{15}	&z_{16}\end{pmatrix}$
+$Z_{2}=\begin{pmatrix}z_{21}&z_{22}&z_{23}\\z_{24}&z_{25}	&z_{26}\end{pmatrix}$
 
 $Z_{cat}=\begin{pmatrix}z_{11}&z_{12}&z_{13}&z_{11}&z_{12}&z_{13}\\z_{14}&z_{15}&z_{16}&z_{24}&z_{25}&z_{26} \end{pmatrix}$
 
@@ -184,7 +185,8 @@ $X_{I}=X_{i}+\sum_{n=i}^{I-1}F(X_{n},W_{n})$
 
 此时对神经网络的结构求梯度,发现可以避免梯度消失的问题
 
-导出的结果为<font size=5>$\frac{\part Loss}{\part X_{i}}=\frac{\part Loss}{\part X_{i}}*(1+\frac{\part \sum_{n=i}^{I-1}F(X_{n},W_{n})}{\part X_{i}})$​</font>
+导出的结果为
+<font size=5>$\frac{\part Loss}{\part X_{i}}=\frac{\part Loss}{\part X_{i}}*(1+\frac{\part \sum_{n=i}^{I-1}F(X_{n},W_{n})}{\part X_{i}})$</font>
 
 
 
@@ -416,7 +418,7 @@ Masked Self-Attehtion确保在生成当前时间步的输出时,模型不能查�
 
 有了掩码机制后,,,将M加到$softmax(QK^T)$中
 
-$M=\left[\begin{array}{ccccc}{0}&{-\infty}&{-\infty}&{\cdots}&{-\infty}\\{0}&{0}&{-\infty}&{\cdots}&{-\infty}\\{0}&{0}&{0}&{\cdots}&{-\infty}\\{\vdots}&{\vdots}&{\vdots}&{\ddots}&{\vdots}\\{0}&{0}&{0}&{\cdots}&{0}\end{array}\right]$
+$$M=\left[\begin{array}{ccccc}{0}&{-\infty}&{-\infty}&{\cdots}&{-\infty}\\{0}&{0}&{-\infty}&{\cdots}&{-\infty}\\{0}&{0}&{0}&{\cdots}&{-\infty}\\{\vdots}&{\vdots}&{\vdots}&{\ddots}&{\vdots}\\{0}&{0}&{0}&{\cdots}&{0}\end{array}\right]$$
 
 这样得到的结果右上角就是负无穷,,,即  $q_{i}*k_{j}->-\infty$(i<j) ,  表示前边的样本无法访问靠后的样本,,这就是掩码机制的本质,,,,注意**这里的 k 是标签不是特征**
 
